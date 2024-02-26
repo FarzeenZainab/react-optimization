@@ -3,21 +3,12 @@ import { useState } from "react";
 import Counter from "./components/Counter/Counter.jsx";
 import Header from "./components/Header.jsx";
 import { log } from "./log.js";
+import ConfigureCounter from "./components/Counter/ConfigureCounter.jsx";
 
 function App() {
   log("<App /> rendered");
 
-  const [enteredNumber, setEnteredNumber] = useState(0);
   const [chosenCount, setChosenCount] = useState(0);
-
-  function handleChange(event) {
-    setEnteredNumber(+event.target.value);
-  }
-
-  function handleSetClick() {
-    setChosenCount(enteredNumber);
-    setEnteredNumber(0);
-  }
 
   return (
     <>
@@ -50,12 +41,22 @@ function App() {
               -------------------------------------------------------------------------------
 
               2. Clever Structuring of the components:
+              We can move the input in to a separate component which will  manage its own state
+              instead of having it in the parent component. So whenever user enters something
+              into the input, the parent component does not get re rendered. Only the InputCounter
+              component will get re rendered with the new value passed down from the parent component.
 
-
+              Because we restructured our code and moved the input inside a separate component, we 
+              do not need the memo function in the Counter component. 
 
           */}
-          <input type="number" onChange={handleChange} value={enteredNumber} />
-          <button onClick={handleSetClick}>Set</button>
+
+          {/* // ! Un-optimized implementation */}
+          {/* <input type="number" onChange={handleChange} value={enteredNumber} /> */}
+          {/* <button onClick={handleSetClick}>Set</button> */}
+
+          {/* // ** Optimized implementation */}
+          <ConfigureCounter setChosenCount={setChosenCount} />
         </section>
 
         {/* 
