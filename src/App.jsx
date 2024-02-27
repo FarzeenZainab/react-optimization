@@ -19,7 +19,7 @@ function App() {
 
           {/* 
             Problem:
-              The when a new character is  entered in this input field, the state gets
+              When a new character is  entered in the input field, the state gets
               updated immediately, and because the state of this input is managed in the
               App component, the App and all of it's child components are rerendered on
               each state update. This is not optimized and to resolve this issue we have
