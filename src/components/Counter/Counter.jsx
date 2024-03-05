@@ -48,6 +48,17 @@ export default function Counter({ initialCount }) {
 
   const [counter, setCounter] = useState(initialCount);
 
+  // resetting the counter when input value is set, it is discouraged to overuse
+  // useEffect because it triggers an additional re-render, instead you can use key
+
+  /**
+   * You can use key in any react component
+   */
+
+  // useEffect(() => {
+  //   setCounter(initialCount);
+  // }, [initialCount]);
+
   /**
    * useCallback is primarily used for memoizing functions. It returns a memoized version
    * of the callback function that only changes if one of the dependencies has changed.

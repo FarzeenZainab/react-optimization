@@ -63,10 +63,28 @@ function App() {
           After adding the memo function in the Counter component, the component will
           not rerender if the value of the *INPUT* changes in the app component.
         */}
-        <Counter initialCount={chosenCount} />
+
+        {/* 
+          using key to reset component - when the value of chosenCount changes
+          it will basically destroy the old component instance and re-create it
+        */}
+        <Counter key={chosenCount} initialCount={chosenCount} />
       </main>
     </>
   );
 }
 
 export default App;
+
+/**
+ * You should not use index as key of a dynamically generated list
+ *
+ * You might be tempted to use an item's index in the array as its key. In fact, that's
+ * what react will use if you don't specify a key at all. But the order in which you render
+ * items will change over time if an item is inserted, deleted, or if the array get reordered.
+ *
+ * Index as a key often leads to subtle and confusing bugs because react is unable to find a
+ * unique identifier in the list. It is recommended to use stable and unique identifiers as
+ * keys for dynamically generated lists in react. This ensures that react can accurately track
+ * each item and optimize rerendering performance
+ */
